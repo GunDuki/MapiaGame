@@ -22,6 +22,7 @@ public class Mapia extends Human{
 		case 2:
 			if(Doctor.life==0){
 				System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
+				Main.Rezero++;
 				break;
 			}
 			System.out.println("탕탕탕");
@@ -33,10 +34,25 @@ public class Mapia extends Human{
 			break;
 
 		case 3:
+			   if(Police.life==0){
+			    System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
+			    break;
+			   }
+			   System.out.println("탕탕탕");
+			   if(Police.shield==1){
+			    Police.shield-=1;
+			   }
+			   Police.life-=1;
+			   if(Doctor.life==0){
+			    System.out.println("경찰이 죽었당");
+			    System.out.println("경찰 : "+Police.life);
+			   }
+			   break;
 
 		case 4:
 			if(Simin.life==0){
 				System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
+				Main.Rezero++;
 				break;
 			}
 			System.out.println("탕탕탕");
@@ -44,11 +60,13 @@ public class Mapia extends Human{
 			if(Simin.life==0){
 				System.out.println("시민이 죽엇당");
 				System.out.println("시민 : "+Simin.life);
+				Main.killcount--;
+				break;
 			}
-			break;
 		case 5:
 			if(Simin2.life==0){
 				System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
+				Main.Rezero++;
 				break;
 			}
 			System.out.println("탕탕탕");
@@ -56,11 +74,13 @@ public class Mapia extends Human{
 			if(Simin2.life==0){
 				System.out.println("시민2이 죽엇당");
 				System.out.println("시민2 : "+Simin2.life);
+				Main.killcount--;
+				break;
 			}
-			break;
 		case 6:
 			if(Simin3.life==0){
 				System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
+				Main.Rezero++;
 				break;
 			}
 			System.out.println("탕탕탕");
@@ -68,8 +88,14 @@ public class Mapia extends Human{
 			if(Simin3.life==0){
 				System.out.println("시민3이 죽엇당");
 				System.out.println("시민3 : "+Simin3.life);
+				Main.killcount--;
 				break;
 			}
 		}
+	}
+	public static int vote(){
+		Scanner input=new Scanner(System.in);
+		votenum=input.nextInt();
+		return votenum;
 	}
 }
