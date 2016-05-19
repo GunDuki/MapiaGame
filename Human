@@ -1,0 +1,18 @@
+package MapiaGame;
+
+import java.util.Scanner;
+
+public class Human {
+	protected static int life;
+	protected static String number;
+	protected static int votenum;
+	public Human(String number){
+		this.life=life;
+		this.number=number;
+	}
+	public int vote(){
+		Scanner input = new Scanner(System.in);
+		votenum=input.nextInt();
+		return votenum;
+	}
+}
