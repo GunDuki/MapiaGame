@@ -1,0 +1,11 @@
+package MapiaGame;
+import java.util.Scanner;
+public class Police extends Human {
+	public static int shield;
+	public Police(String number) {
+		super(number);
+	}
+		public static void shield(){
+			shield=1;
+		}
+}
