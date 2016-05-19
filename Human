@@ -16,3 +16,4 @@ public class Human {
 		return votenum;
 	}
 }
+//부모클래스 휴먼
