@@ -6,17 +6,22 @@ public class Main extends Human{
 		super(number);
 	}
 	protected static int i;
-	protected static int j;
 	protected static int Rezero;
+	protected static int killcount;
+	protected static int j;
 
 	public static void main(String[] args) {
 		life=1;
 		int turn=1;
 		i=0;
 		j=1;
-		Rezero=0;
-
+		Rezero=1;
+		killcount=1;
+		int k;
+		int votenumber[]=new int [6];
+		int votenumbercopy[]=new int[7];
 		for(;;){
+			killcount=0;
 			System.out.println(turn+"번째 아침입니다.");
 			if(Simin.life>=1){
 				Simin.life=1;
@@ -33,26 +38,86 @@ public class Main extends Human{
 			if(Mapia.life>=1){
 				Mapia.life=1;
 			}
-
-			if(Simin.life==1){
-				Simin.vote();
-			}
-			if(Simin2.life==1){
-				Simin2.vote();
-			}
-			if(Simin3.life==1){
-				Simin3.vote();
-			}
-			if(Doctor.life==1){
-				Doctor.vote();
+			for(i=0;i<j;i++){
+				for(k=1;k<7;k++){
+					votenumbercopy[k]=0;
+				}
+				if(Simin.life==1){
+					votenumber[0]=Simin.vote();
+					for(k=1;k<7;k++){
+						if(votenumber[0]==k){
+							votenumbercopy[k]++;
+						}
+					}
+				}
+				if(Simin2.life==1){
+					votenumber[1]=Simin2.vote();
+					for(k=1;k<7;k++){
+						if(votenumber[1]==k){
+							votenumbercopy[k]++;
+						}
+					}
+				}
+				if(Simin3.life==1){
+					votenumber[2]=Simin3.vote();
+					for(k=1;k<7;k++){
+						if(votenumber[2]==k){
+							votenumbercopy[k]++;
+						}
+					}
+				}
+				if(Doctor.life==1){
+					votenumber[3]=Doctor.vote();
+					for(k=1;k<7;k++){
+						if(votenumber[3]==k){
+							votenumbercopy[k]++;
+						}
+					}
+				}
+				if(Police.life==1){
+					votenumber[4]=Police.vote();
+					for(k=1;k<7;k++){
+						if(votenumber[4]==k){
+							votenumbercopy[k]++;
+						}
+					}
+				}
+				votenumber[5]=Mapia.vote();
+				for(k=1;k<7;k++){
+					if(votenumber[5]==k){
+						votenumbercopy[k]++;
+					}
+				}
+				if(Doctor.life!=1&&votenumbercopy[2]!=0){
+					j=i+1;
+				}
+				if(Police.life!=1&&votenumbercopy[3]!=0){
+					j=i+1;
+				}
+				if(Simin.life!=1&&votenumbercopy[4]!=0){
+					j=i+1;
+				}
+				if(Simin2.life!=1&&votenumbercopy[5]!=0){
+					j=i+1;
+				}
+				if(Simin3.life!=1&&votenumbercopy[6]!=0){
+					j=i+1;
+				}
+				
+				
+				
 			}
 			System.out.println(turn+"번째 밤입니다.");
-			for(;i<j;i++){
+			for(i=0;i<Rezero;i++){
+				Doctor.Heal();
+			}
+			System.out.println("의사의 힐링");
+			for(i=0;i<Rezero;i++){
 				System.out.println("마피아는 죽이고 싶은 사람을 지목해주세요.");
 				Mapia.killing();
-				if(Rezero!=0){
-					j++;
-				}
+			}
+			if(Main.killcount==1){
+				System.out.println("의사가 사람을 지켰습니다. 빠바바밤");
 			}
 		}
 	}
