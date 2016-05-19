@@ -4,36 +4,50 @@ public class Doctor extends Human {
 	public Doctor(String number) {
 		super(number);
 	}
-		public static void Heal(){
+	public static void Heal(){
 		int num=0;
 		Scanner in = new Scanner(System.in);
 		System.out.println("사람을 선택하세요.");
 		num=in.nextInt();
-		
+
 		switch(num){
-		
+
 		case 1:
+			if(Mapia.life==1){
+				Mapia.life+=1;
+			}
+			else{
+				Main.Rezero++;
+			}
 		case 2:
+			if(Doctor.life==1){
+				Doctor.life+=1;
+			}
+			else{
+				Main.Rezero++;
+			}
 		case 3:
 		case 4:
 			if(Simin.life==1){
-			System.out.println("플레이어 4를 치료합니다.");
-			Simin.life+=1;
-			System.out.println("플레이어4 치료완료!!");
+				Simin.life+=1;
+			}
+			else{
+				Main.Rezero++;
 			}
 		case 5:
 			if(Simin2.life==1){
-			System.out.println("플레이어 5를 치료합니다.");
-			Simin.life+=1;
-			System.out.println("플레이어5 치료완료!!");
+				Simin.life+=1;
+			}
+			else{
+				Main.Rezero++;
 			}
 		case 6:
 			if(Simin3.life==1){
-			System.out.println("플레이어 6를 치료합니다.");
-			Simin.life+=1;
-			System.out.println("플레이어6 치료완료!!");
+				Simin.life+=1;
 			}
-		}
-		
+			else{
+				Main.Rezero++;
+			}
+		}  
 	}
 }
