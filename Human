@@ -10,9 +10,9 @@ public class Human {
 		this.life=life;
 		this.number=number;
 	}
-	public int vote(){
+	public static int vote(){
 		Scanner input = new Scanner(System.in);
-		votenum=input.nextInt();
+		votenum=((int)(Math.random()*(6)));
 		return votenum;
 	}
 }
