@@ -1,0 +1,8 @@
+package MapiaGame;
+
+public class Simin extends Human{
+
+	public Simin(String number) {
+		super(number);
+	}
+}
