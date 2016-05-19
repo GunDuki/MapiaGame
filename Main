@@ -1,0 +1,13 @@
+package MapiaGame;
+
+public class Main extends Human{
+
+	public Main(String number) {
+		super(number);
+	}
+
+	public static void main(String[] args) {
+		life=1;
+	}
+}
+//서버가되는 메인클래스(차후 수정함
