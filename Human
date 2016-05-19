@@ -15,5 +15,24 @@ public class Human {
 		votenum=((int)(Math.random()*(6)));
 		return votenum;
 	}
+	public static int votekill(){
+		life=0;
+		if(Simin.life==0){
+			System.out.println("그는 시민이였습니다. 수고 ㅂ");
+		}
+		else if(Simin2.life==0){
+			System.out.println("그는 시민2이였습니다. 수고 ㅂ");
+		}
+		else if(Simin3.life==0){
+			System.out.println("그는 시민3이였습니다. 수고 ㅂ");
+		}
+		else if(Doctor.life==0){
+			System.out.println("그는 의사였습니다. 수고 ㅂ");
+		}
+		else if(Police.life==0){
+			System.out.println("그는 경찰이였습니다. 수고 ㅂ");
+		}
+		return life;
+	}
 }
 //부모클래스 휴먼
