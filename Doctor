@@ -1,0 +1,39 @@
+package MapiaGame;
+import java.util.Scanner;
+public class Doctor extends Human {
+	public Doctor(String number) {
+		super(number);
+	}
+		public static void Heal(){
+		int num=0;
+		Scanner in = new Scanner(System.in);
+		System.out.println("사람을 선택하세요.");
+		num=in.nextInt();
+		
+		switch(num){
+		
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			if(Simin.life==1){
+			System.out.println("플레이어 4를 치료합니다.");
+			Simin.life+=1;
+			System.out.println("플레이어4 치료완료!!");
+			}
+		case 5:
+			if(Simin2.life==1){
+			System.out.println("플레이어 5를 치료합니다.");
+			Simin.life+=1;
+			System.out.println("플레이어5 치료완료!!");
+			}
+		case 6:
+			if(Simin3.life==1){
+			System.out.println("플레이어 6를 치료합니다.");
+			Simin.life+=1;
+			System.out.println("플레이어6 치료완료!!");
+			}
+		}
+		
+	}
+}
