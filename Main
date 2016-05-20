@@ -9,17 +9,27 @@ public class Main extends Human{
 	protected static int Rezero;
 	protected static int killcount;
 	protected static int j;
+	protected static int killperson;
 
 	public static void main(String[] args) {
 		life=1;
 		int turn=1;
 		i=0;
 		j=1;
+		killperson=0;
 		Rezero=1;
 		killcount=1;
 		int k;
+		int max;
 		int votenumber[]=new int [6];
 		int votenumbercopy[]=new int[7];
+		int votenumbercopy2[]=new int[7];
+		Mapia.life=1;
+		Simin.life=1;
+		Simin2.life=1;
+		Simin3.life=1;
+		Police.life=1;
+		Doctor.life=1;
 		for(;;){
 			killcount=0;
 			System.out.println(turn+"번째 아침입니다.");
@@ -46,7 +56,7 @@ public class Main extends Human{
 					votenumber[0]=Simin.vote();
 					for(k=1;k<7;k++){
 						if(votenumber[0]==k){
-							votenumbercopy[k]++;
+						votenumbercopy[k]++;
 						}
 					}
 				}
@@ -102,14 +112,41 @@ public class Main extends Human{
 				}
 				if(Simin3.life!=1&&votenumbercopy[6]!=0){
 					j=i+1;
+				}				
+			}
+			max = votenumber[1];
+			for(i=1;i<7;i++){
+				if(max>votenumbercopy[i]){
+					max=votenumbercopy[i];
 				}
-				
-				
-				
+			}
+			for(i=1;i<7;i++){
+				if(max==votenumbercopy[i]){
+					if(i==1){
+						Mapia.votekill();
+						
+					}
+					else if(i==2){
+						Doctor.votekill();
+					}
+					else if(i==3){
+						Police.votekill();
+					}
+					else if(i==4){
+						Simin.votekill();
+					}
+					else if(i==5){
+						Simin2.votekill();
+					}
+					else {
+						Simin3.votekill();
+					}
+				}
 			}
 			System.out.println(turn+"번째 밤입니다.");
 			for(i=0;i<Rezero;i++){
 				Doctor.Heal();
+				System.out.println("메인 오류");
 			}
 			System.out.println("의사의 힐링");
 			for(i=0;i<Rezero;i++){
@@ -119,7 +156,8 @@ public class Main extends Human{
 			if(Main.killcount==1){
 				System.out.println("의사가 사람을 지켰습니다. 빠바바밤");
 			}
+			turn++;
+			
 		}
 	}
 }
-//서버가되는 메인클래스(차후 수정함
