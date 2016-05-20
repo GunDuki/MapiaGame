@@ -9,6 +9,7 @@ public class Doctor extends Human {
 		Scanner in = new Scanner(System.in);
 		System.out.println("사람을 선택하세요.");
 		num=in.nextInt();
+		System.out.println("닥터오류");
 
 		switch(num){
 
@@ -18,7 +19,9 @@ public class Doctor extends Human {
 			}
 			else{
 				Main.Rezero++;
+				System.out.println(Mapia.life+" : 마피아의 목숨 else오류");
 			}
+			break;
 		case 2:
 			if(Doctor.life==1){
 				Doctor.life+=1;
@@ -26,7 +29,15 @@ public class Doctor extends Human {
 			else{
 				Main.Rezero++;
 			}
+			break;
 		case 3:
+			if(Police.life==1){
+				Police.life+=1;
+			}
+			else{
+				Main.Rezero++;
+			}
+			break;
 		case 4:
 			if(Simin.life==1){
 				Simin.life+=1;
@@ -34,20 +45,23 @@ public class Doctor extends Human {
 			else{
 				Main.Rezero++;
 			}
+			break;
 		case 5:
 			if(Simin2.life==1){
-				Simin.life+=1;
+				Simin2.life+=1;
 			}
 			else{
 				Main.Rezero++;
 			}
+			break;
 		case 6:
 			if(Simin3.life==1){
-				Simin.life+=1;
+				Simin3.life+=1;
 			}
 			else{
 				Main.Rezero++;
 			}
+			break;
 		}  
 	}
 }
