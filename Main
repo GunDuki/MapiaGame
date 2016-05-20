@@ -24,14 +24,15 @@ public class Main extends Human{
 		int votenumber[]=new int [6];
 		int votenumbercopy[]=new int[7];
 		int votenumbercopy2[]=new int[7];
-		Mapia.life=1;
+		/*Mapia.life=1;
 		Simin.life=1;
 		Simin2.life=1;
 		Simin3.life=1;
 		Police.life=1;
-		Doctor.life=1;
+		Doctor.life=1;*/
 		for(;;){
 			killcount=0;
+			System.out.println(Mapia.life);
 			System.out.println(turn+"번째 아침입니다.");
 			if(Simin.life>=1){
 				Simin.life=1;
@@ -53,93 +54,84 @@ public class Main extends Human{
 					votenumbercopy[k]=0;
 				}
 				if(Simin.life==1){
-					votenumber[0]=Simin.vote();
-					for(k=1;k<7;k++){
-						if(votenumber[0]==k){
-						votenumbercopy[k]++;
-						}
-					}
+					k=Simin.vote();
+					votenumbercopy[k]++;
+					System.out.println(k+":"+"votenumbercopy["+k+"]"+votenumbercopy[k]);
 				}
 				if(Simin2.life==1){
-					votenumber[1]=Simin2.vote();
-					for(k=1;k<7;k++){
-						if(votenumber[1]==k){
-							votenumbercopy[k]++;
-						}
-					}
+					k=Simin2.vote();
+					votenumbercopy[k]++;
+					System.out.println(k+":"+"votenumbercopy["+k+"]"+votenumbercopy[k]);
 				}
 				if(Simin3.life==1){
-					votenumber[2]=Simin3.vote();
-					for(k=1;k<7;k++){
-						if(votenumber[2]==k){
-							votenumbercopy[k]++;
-						}
-					}
+					k=Simin3.vote();
+					votenumbercopy[k]++;
+					System.out.println(k+":"+"votenumbercopy["+k+"]"+votenumbercopy[k]);
 				}
 				if(Doctor.life==1){
-					votenumber[3]=Doctor.vote();
-					for(k=1;k<7;k++){
-						if(votenumber[3]==k){
-							votenumbercopy[k]++;
-						}
-					}
+					k=Doctor.vote();
+					votenumbercopy[k]++;
+					System.out.println(k+":"+"votenumbercopy["+k+"]"+votenumbercopy[k]);
 				}
 				if(Police.life==1){
-					votenumber[4]=Police.vote();
-					for(k=1;k<7;k++){
-						if(votenumber[4]==k){
-							votenumbercopy[k]++;
-						}
-					}
+					k=Police.vote();
+					votenumbercopy[k]++;
+					System.out.println(k+":"+"votenumbercopy["+k+"]"+votenumbercopy[k]);
 				}
-				votenumber[5]=Mapia.vote();
-				for(k=1;k<7;k++){
-					if(votenumber[5]==k){
-						votenumbercopy[k]++;
-					}
+				k=Mapia.vote();
+				votenumbercopy[k]++;
+				System.out.println(k+":"+"votenumbercopy["+k+"]"+votenumbercopy[k]);
+				for(i=1;i<7;i++){
+					System.out.println(i+" : "+votenumbercopy[i]);
 				}
-				if(Doctor.life!=1&&votenumbercopy[2]!=0){
+				if(Doctor.life==0&&votenumber[2]!=0){
 					j=i+1;
 				}
-				if(Police.life!=1&&votenumbercopy[3]!=0){
+				if(Police.life==0&&votenumber[3]!=0){
 					j=i+1;
 				}
-				if(Simin.life!=1&&votenumbercopy[4]!=0){
+				if(Simin.life==0&&votenumber[4]!=0){
 					j=i+1;
 				}
-				if(Simin2.life!=1&&votenumbercopy[5]!=0){
+				if(Simin2.life==0&&votenumber[5]!=0){
 					j=i+1;
 				}
-				if(Simin3.life!=1&&votenumbercopy[6]!=0){
+				if(Simin3.life==0&&votenumber[6]!=0){
 					j=i+1;
 				}				
 			}
-			max = votenumber[1];
+			max = 0;
 			for(i=1;i<7;i++){
-				if(max>votenumbercopy[i]){
+				if(max<votenumbercopy[i]){
 					max=votenumbercopy[i];
+					System.out.println(max);
 				}
 			}
 			for(i=1;i<7;i++){
 				if(max==votenumbercopy[i]){
 					if(i==1){
 						Mapia.votekill();
-						
+						System.out.println("마피아"+max);
 					}
 					else if(i==2){
 						Doctor.votekill();
+						System.out.println("의사"+max);
 					}
 					else if(i==3){
 						Police.votekill();
+						System.out.println("경찰"+max);
 					}
 					else if(i==4){
 						Simin.votekill();
+						System.out.println("시민"+max);
 					}
 					else if(i==5){
 						Simin2.votekill();
+						System.out.println("시민2"+max);
 					}
 					else {
 						Simin3.votekill();
+						System.out.println("시민3"+max);
 					}
 				}
 			}
@@ -157,7 +149,7 @@ public class Main extends Human{
 				System.out.println("의사가 사람을 지켰습니다. 빠바바밤");
 			}
 			turn++;
-			
+
 		}
 	}
 }
