@@ -6,10 +6,14 @@ public class Doctor extends Human {
 	}
 	public static void Heal(){
 		int num=0;
+		System.out.println(Mapia.life);
 		Scanner in = new Scanner(System.in);
 		System.out.println("사람을 선택하세요.");
+		System.out.println("마피아"+Mapia.life);
+		System.out.println("닥터"+Doctor.life);
+		System.out.println("경찰"+Police.life);
+		System.out.println("시민"+Simin.life);
 		num=in.nextInt();
-		System.out.println("닥터오류");
 
 		switch(num){
 
@@ -19,7 +23,6 @@ public class Doctor extends Human {
 			}
 			else{
 				Main.Rezero++;
-				System.out.println(Mapia.life+" : 마피아의 목숨 else오류");
 			}
 			break;
 		case 2:
