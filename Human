@@ -7,12 +7,13 @@ public class Human {
 	protected static String number;
 	protected static int votenum;
 	public Human(String number){
-		this.life=life;
+		life=1;
 		this.number=number;
 	}
 	public static int vote(){
 		Scanner input = new Scanner(System.in);
-		votenum=((int)(Math.random()*(6)));
+		votenum=(int)(Math.random()*(6-1+1)+1);
+		System.out.println(votenum);
 		return votenum;
 	}
 	public static int votekill(){
