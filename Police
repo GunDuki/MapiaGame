@@ -1,11 +1,15 @@
 package MapiaGame;
 import java.util.Scanner;
 public class Police extends Human {
-	public static int shield;
+	public static int shield=1;
+	public static int life3=1;
 	public Police(String number) {
 		super(number);
 	}
 		public static void shield(){
 			shield=1;
+		}
+		public static void life_P(){
+			int life3=1;
 		}
 }
