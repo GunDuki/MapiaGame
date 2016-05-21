@@ -1,70 +1,76 @@
 package MapiaGame;
 import java.util.Scanner;
 public class Doctor extends Human {
+	public static int life2=1;
 	public Doctor(String number) {
 		super(number);
 	}
-	public static void Heal(){
+	public static int Heal(){
 		int num=0;
-		System.out.println(Mapia.life);
 		Scanner in = new Scanner(System.in);
-		System.out.println("사람을 선택하세요.");
-		System.out.println("마피아"+Mapia.life);
-		System.out.println("닥터"+Doctor.life);
-		System.out.println("경찰"+Police.life);
-		System.out.println("시민"+Simin.life);
+		System.out.println("[Doctor] 사람을 선택하세요.");
+		System.out.println("마피아 목숨 : "+Mapia.life1);
+		System.out.println("닥터 목숨 : "+Doctor.life2);
+		System.out.println("경찰 목숨 : "+Police.life3+" 쉴드 : "+Police.shield);
+		System.out.println("시민 목숨 : "+Simin.life4);
+		System.out.println("시민2 목숨 : "+Simin2.life5);
+		System.out.println("시민3 목숨 : "+Simin3.life6);
 		num=in.nextInt();
 
 		switch(num){
-
 		case 1:
-			if(Mapia.life==1){
-				Mapia.life+=1;
+			if(Mapia.life1==1){
+				Mapia.life1+=1;
 			}
 			else{
 				Main.Rezero++;
 			}
 			break;
 		case 2:
-			if(Doctor.life==1){
-				Doctor.life+=1;
+			if(Doctor.life2==1){
+				Doctor.life2+=1;
 			}
 			else{
 				Main.Rezero++;
 			}
 			break;
 		case 3:
-			if(Police.life==1){
-				Police.life+=1;
+			if(Police.life3==1){
+				Police.life3+=1;
 			}
 			else{
 				Main.Rezero++;
 			}
 			break;
 		case 4:
-			if(Simin.life==1){
-				Simin.life+=1;
+			if(Simin.life4==1){
+				Simin.life4+=1;
 			}
 			else{
 				Main.Rezero++;
 			}
 			break;
 		case 5:
-			if(Simin2.life==1){
-				Simin2.life+=1;
+			if(Simin2.life5==1){
+				Simin2.life5+=1;
 			}
 			else{
 				Main.Rezero++;
 			}
 			break;
 		case 6:
-			if(Simin3.life==1){
-				Simin3.life+=1;
+			if(Simin3.life6==1){
+				Simin3.life6+=1;
 			}
 			else{
 				Main.Rezero++;
 			}
 			break;
-		}  
+		}
+		return num;
 	}
+// 각각의 목숨
+public static void life_D(){
+	int life1=1;
+}
 }
