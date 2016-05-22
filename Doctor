@@ -69,8 +69,5 @@ public class Doctor extends Human {
 		}
 		return num;
 	}
-// 각각의 목숨
-public static void life_D(){
-	int life1=1;
-}
+	// 각각의 목숨
 }
