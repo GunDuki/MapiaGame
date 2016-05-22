@@ -7,20 +7,11 @@ public class Human {
 	protected static int votenum;
 	public Human(String number){
 		this.number=number;
-		//객체 생성 ( 임시로 생성해둠 )
-		Doctor doc = new Doctor(number);
-		Mapia mp = new Mapia(number);
-		Police pol = new Police(number);
-		Simin s1 = new Simin(number);
-		Simin2 s2 = new Simin2(number);
-		Simin3 s3 = new Simin3(number);
-		
 	}
 	public static int vote(){
 		// 투표 기능
 		Scanner input = new Scanner(System.in);
 		votenum=(int)(Math.random()*(6-1+1)+1);
-		System.out.println("투표 : "+votenum);
 		return votenum;
 	}
 }
