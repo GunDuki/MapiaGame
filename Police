@@ -6,10 +6,10 @@ public class Police extends Human {
 	public Police(String number) {
 		super(number);
 	}
-		public static void shield(){
-			shield=1;
-		}
-		public static void life_P(){
-			int life3=1;
-		}
+	public static void shield(){
+		shield=1;
+	}
+	public static void life_P(){
+		int life3=1;
+	}
 }
