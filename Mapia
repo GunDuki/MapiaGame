@@ -1,110 +1,266 @@
 package MapiaGame;
+import java.io.*;
+public class Main extends Human{
 
-import java.util.Scanner;
-
-public class Mapia extends Human{
-	public static int life1=1;
-	public Mapia(String number){
+	public Main(String number) {
 		super(number);
 	}
-	public static int killing(){
-		Scanner input = new Scanner(System.in);
-		int num;
-		System.out.println("[Mapia] 사람을 선택하세요.");
-		System.out.println("마피아 목숨 : "+Mapia.life1);
-		System.out.println("닥터 목숨 : "+Doctor.life2);
-		System.out.println("경찰 목숨 : "+Police.life3+" 쉴드 : "+Police.shield);
-		System.out.println("시민 목숨 : "+Simin.life4);
-		System.out.println("시민2 목숨 : "+Simin2.life5);
-		System.out.println("시민3 목숨 : "+Simin3.life6);
-		num=input.nextInt();
-		// 죽이는 메소드
-		switch(num){
-		case 1:
-			System.out.println("탕탕탕");
-			Mapia.life1-=1;
-			if(Mapia.life1==0){ 
-				System.out.println("자살했당");
-			}
-			break;
-		case 2:
-			if(Doctor.life2<=0){
-				System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
-				Main.Rezero++;
-				break;
-			}
-			System.out.println("탕탕탕");
-			Doctor.life2-=1;
-			if(Doctor.life2==0){
-				System.out.println("의사가 죽었당");
-			}
-			break;
+	protected static int i; // 반복문
+	protected static int Rezero;
+	protected static int killcount;
+	protected static int j;
+	protected static int killperson; // 죽은 사람 수
 
-		case 3:
-			   if(Police.life3<=0){
-			    System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
-			    Main.Rezero++;
-			    break;
-			   }
-			   if(Police.shield==1){
-				   System.out.println("경찰의 쉴드로 죽지 않았다!!");
-			    Police.shield-=1;
-			    break;
-			   }
-			   else{
-				   System.out.println("탕탕탕");
-			   Police.life3-=1;}
-			   if(Police.life3==0){
-			    System.out.println("경찰이 죽었당");
-			   }
-			   break;
+	public static void main(String[] args) {
+		int dc = 0,mc=0; // doctor에서 선택한 값, Mapia에서 선택한값
+		int turn=1; // 턴수
+		i=0;
+		j=1;
+		killperson=0;
+		Rezero=1;
+		int k;
+		int max;
+		int votenumber[]=new int [6];
+		int votenumbercopy[]=new int[7];
+		int votenumbercopy2[]=new int[7];
+		/*Mapia.life=1;
+		Simin.life=1;
+		Simin2.life=1;
+		Simin3.life=1;
+		Police.life=1;
+		Doctor.life=1;*/
+		for(;;){
+			System.out.println(turn+"번째 아침입니다.");
 
-		case 4:
-			if(Simin.life4<=0){
-				System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
-				Main.Rezero++;
+			// life 초기화
+			if(Simin.life4>=1){
+				Simin.life4=1;
 			}
-			System.out.println("탕탕탕");
-			Simin.life4-=1;
-			if(Simin.life4==0){
-				System.out.println("시민이 죽엇당");
-				Main.killcount--;
+			if(Simin2.life5>=1){
+				Simin2.life5=1;
 			}
-			break;
-		case 5:
-			if(Simin2.life5<=0){
-				System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
-				Main.Rezero++;
+			if(Simin3.life6>=1){
+				Simin3.life6=1;
 			}
-			System.out.println("탕탕탕");
-			Simin2.life5-=1;
-			if(Simin2.life5==0){
-				System.out.println("시민2이 죽엇당");
-				Main.killcount--;				
+			if(Doctor.life2>=1){
+				Doctor.life2=1;
 			}
-			break;
-		case 6:
-			if(Simin3.life6<=0){
-				System.out.println("이미 죽은사람입니다. 다시 선택해주세요.");
-				Main.Rezero++;
-				break;
+			if(Mapia.life1>=1){
+				Mapia.life1=1;
 			}
-			System.out.println("탕탕탕");
-			Simin3.life6-=1;
-			if(Simin3.life6==0){
-				System.out.println("시민3이 죽엇당");
-				Main.killcount--;
+			if(Police.life3>=1){
+				Police.life3=1;
 			}
-			break;
+			// 득표수 추가 기능
+			for(i=0;i<j;i++){
+				for(k=1;k<7;k++){
+					votenumbercopy2[k]=votenumbercopy[k]=0;
+				}
+				if(Simin.life4==1){
+					votenumbercopy2[4]=k=Simin.vote();
+					if(k==2&&Doctor.life2==1){//수정
+						votenumbercopy[k]++;
+					}
+					else if(k==3&&Police.life3==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==4){
+						j=i+2;
+					}
+					else if(k==5&&Simin2.life5==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==6&&Simin3.life6==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==1){
+						votenumbercopy[k]++;
+					}
+				}
+				if(Simin2.life5==1){
+					votenumbercopy2[5]=k=Simin2.vote();
+					if(k==2&&Doctor.life2==1){//수정
+						votenumbercopy[k]++;
+					}
+					else if(k==3&&Police.life3==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==5){
+						j=i+2;
+					}
+					else if(k==4&&Simin.life4==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==6&&Simin3.life6==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==1){
+						votenumbercopy[k]++;
+					}
+				}
+				if(Simin3.life6==1){
+					votenumbercopy2[6]=k=Simin3.vote();
+					if(k==2&&Doctor.life2==1){//수정
+						votenumbercopy[k]++;
+					}
+					else if(k==3&&Police.life3==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==6){
+						j=i+2;
+					}
+					else if(k==5&&Simin2.life5==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==4&&Simin.life4==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==1){
+						votenumbercopy[k]++;
+					}
+				}
+				if(Doctor.life2==1){
+					votenumbercopy2[2]=k=Doctor.vote();
+					if(k==4&&Simin.life4==1){//수정
+						votenumbercopy[k]++;
+					}
+					else if(k==3&&Police.life3==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==2){
+						j=i+2;
+					}
+					else if(k==5&&Simin2.life5==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==6&&Simin3.life6==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==1){
+						votenumbercopy[k]++;
+					}
+				}
+				if(Police.life3==1){
+					votenumbercopy2[3]=k=Police.vote();
+					if(k==2&&Doctor.life2==1){//수정
+						votenumbercopy[k]++;
+					}
+					else if(k==4&&Simin.life4==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==3){
+						j=i+2;
+					}
+					else if(k==5&&Simin2.life5==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==6&&Simin3.life6==1){
+						votenumbercopy[k]++;
+					}
+					else if(k==1){
+						votenumbercopy[k]++;
+					}
+				}
+			}
+			k=Mapia.vote();
+			votenumbercopy[k]++;
+			System.out.println("마피아의 투표 : "+k);
+			System.out.println("의사의 투표 : "+votenumbercopy2[2]);
+			System.out.println("경찰의 투표 : "+votenumbercopy2[3]);
+			System.out.println("시민의투표 : "+votenumbercopy2[4]);
+			System.out.println("시민2의투표 : "+votenumbercopy2[5]);
+			System.out.println("시민3의투표 : "+votenumbercopy2[6]);
+			// 득표수 출력
+			for(i=1;i<7;i++){
+				System.out.println(i+"번째 플레이어 득표수 : "+votenumbercopy[i]+"표");
+			}
+			// 이건 무슨 기능인지 잘 몰라서 주석처리 해둠 없어도 잘 실행 되더라
+			max = 0;
+			// 최대값 설정
+			for(i=1;i<7;i++){
+				if(max<votenumbercopy[i]){
+					max=votenumbercopy[i];
+				}
+			}
+			System.out.println("최대득표수 : "+max);
+			// 최대값과 votenumbercopy가 같을때 죽임
+			for(i=1;i<7;i++){
+				if(max==votenumbercopy[i]){
+					if(i==1){
+						Main.killperson++;
+						System.out.println("마피아가 죽었습니다. 게임 끝!");
+						System.exit(0);
+					}
+					else if(i==2){
+						if(Doctor.life2==1){
+							Doctor.life2--;
+							Main.killperson++;//수정
+							System.out.println("그는 의사였습니다. 수고 ㅂ");
+						}
+						else{
+						}
+					}
+					else if(i==3){
+						if(Police.life3==1){
+							Police.life3--;
+							Main.killperson++;//수정
+							System.out.println("그는 경찰이였습니다. 수고 ㅂ");
+						}
+						else{
+						}
+					}
+					else if(i==4){
+						if(Simin.life4==1){
+							Simin.life4--;
+							Main.killperson++;//수정
+							System.out.println("그는 시민이였습니다. 수고 ㅂ");
+						}
+						else{
+						}
+					}
+					else if(i==5){
+						if(Simin2.life5==1){
+							Simin2.life5--;
+							Main.killperson++;//수정
+							System.out.println("그는 시민이였습니다. 수고 ㅂ");
+						}
+						else{
+						}
+					}
+					else{
+						if(Simin3.life6==1){
+							Simin3.life6--;
+							Main.killperson++;//수정
+							System.out.println("그는 시민이였습니다. 수고 ㅂ");
+						}
+						else{
+						}
+					}
+				}
+			}
+			System.out.println(turn+"번째 밤입니다.");
+			// 의사의 힐링
+			for(i=0;i<Rezero;i++){
+				if(Doctor.life2==1){ // 의사의 life가 1일때
+					dc = Doctor.Heal(); // dc에 Doctor가 선택한 값 대입
+					System.out.println("의사의 힐링");
+				}
+				else break; // 아니라면 빠져나감
+			}
+			Rezero=1;//수정
+			for(i=0;i<Rezero;i++){
+				mc = Mapia.killing(); // mc에 Mapia가 선택한 값 대입
+			}
+
+			if(dc==mc){ // dc와 mc가 같을 때
+				System.out.println("의사가 사람을 지켰습니다. 빠바바밤");
+			}
+			// 죽은 사람수가 4명일때 프로그램 종료
+			if(killperson==4){
+				System.out.println("게임이 끝났습니다. 마피아의 승리입니다.");
+				System.exit(0);
+			}
+			turn++;
 		}
-		return num;
-	}
-	public static int vote(){
-		Scanner input=new Scanner(System.in);
-		System.out.print("당신의 투표 : ");
-		votenum=input.nextInt();
-		for (int i = 0; i < 80; i++)
-		      System.out.println("");
-		return votenum;
 	}
 }
